@@ -12,7 +12,7 @@
         <div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-        <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
 
 
         <script>
@@ -124,12 +124,12 @@
                     text: 'Stacked column chart'
                 },
                 xAxis: {
-                    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                    categories: ['Female', 'Male']
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total fruit consumption'
+                        text: 'Registered Elector'
                     }
                 },
                 tooltip: {
@@ -142,14 +142,41 @@
                     }
                 },
                 series: [{
-                    name: 'John',
-                    data: [5, 3, 4, 7, 2]
+                    name: '18-20',
+                    data: [36995, 36884]
                 }, {
-                    name: 'Jane',
-                    data: [2, 2, 3, 2, 1]
+                    name: '21-25',
+                    data: [72750, 72417]
                 }, {
-                    name: 'Joe',
-                    data: [3, 4, 4, 2, 5]
+                    name: '26-30',
+                    data: [73411, 76912]
+                }, {
+                    name: '31-35',
+                    data: [75126, 78837]
+                }, {
+                    name: '36-40',
+                    data: [77811, 77966]
+                }, {
+                    name: '41-45',
+                    data: [91477, 83466]
+                }, {
+                    name: '46-50',
+                    data: [107281, 92576]
+                }, {
+                    name: '51-55',
+                    data: [134033, 119499]
+                }, {
+                    name: '56-60',
+                    data: [132631, 130187]
+                }, {
+                    name: '61-65',
+                    data: [105949, 106657]
+                }, {
+                    name: '65-70',
+                    data: [84014, 88684]
+                }, {
+                    name: '>=71',
+                    data: [114431, 131429]
                 }]
             });
         </script>
