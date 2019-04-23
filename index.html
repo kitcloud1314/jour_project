@@ -12,6 +12,7 @@
         <div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="highcharts-593be1cb-ceda-4113-b04a-92cb1ae35056" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
+        <div id="container3" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <script>
             Highcharts.chart('container', {
                 chart: {
@@ -365,6 +366,59 @@
                 }
             })();
         </script>
+        <script>
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'Historic and Estimated Worldwide Population Growth by Region'
+                },
+                subtitle: {
+                    text: 'Source: Wikipedia.org'
+                },
+                xAxis: {
+                    categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                    tickmarkPlacement: 'on',
+                    title: {
+                        enabled: false
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Billions'
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value / 1000;
+                        }
+                    }
+                },
+                tooltip: {
+                    split: true,
+                    valueSuffix: ' millions'
+                },
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: '#666666',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 1,
+                            lineColor: '#666666'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Male',
+                    data: [901, 1182, 1147, 992, 853, 843, 861]
+                }, {
+                    name: 'Female',
+                    data: [57, 129, 208, 297, 330, 414, 455]
+                }]
+            });
+        </script>
+
     </body>
 
 </html>
