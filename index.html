@@ -17,7 +17,7 @@
         <div id="container5" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <div id="container6" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
         <div id="container7" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-        <div id="container8" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="highcharts-a1a04fdc-5ba5-4776-88fe-dc0354504378"></div>
 
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
 
@@ -477,79 +477,155 @@
             });
         </script>
 
-
         <script>
-            // Radialize the colors
-            Highcharts.setOptions({
-                colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
-                    return {
-                        radialGradient: {
-                            cx: 0.5,
-                            cy: 0.3,
-                            r: 0.7
-                        },
-                        stops: [
-                            [0, color],
-                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                        ]
+            (function() {
+                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
+                    loaded = 0;
+                if (typeof window["HighchartsEditor"] === "undefined") {
+                    window.HighchartsEditor = {
+                        ondone: [cl],
+                        hasWrapped: false,
+                        hasLoaded: false
                     };
-                })
-            });
+                    include(files[0]);
+                } else {
+                    if (window.HighchartsEditor.hasLoaded) {
+                        cl();
+                    } else {
+                        window.HighchartsEditor.ondone.push(cl);
+                    }
+                }
 
-            // Build the chart
-            Highcharts.chart('container8', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: 'Browser market shares in January, 2018'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            },
-                            connectorColor: 'silver'
+                function isScriptAlreadyIncluded(src) {
+                    var scripts = document.getElementsByTagName("script");
+                    for (var i = 0; i < scripts.length; i++) {
+                        if (scripts[i].hasAttribute("src")) {
+                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
+                                return true;
+                            }
                         }
                     }
-                },
-                series: [{
-                    name: 'Male',
-                    data: [{
-                        name: '10-14',
-                        y: 5.0
-                    }, {
-                        name: '15-19',
-                        y: 7.2
-                    }, {
-                        name: '20-29',
-                        y: 17.1
-                    }, {
-                        name: '30-39',
-                        y: 17.9
-                    }, {
-                        name: '40-49',
-                        y: 18.1
-                    }, {
-                        name: '50-59',
-                        y: 20.4
-                    }, {
-                        name: '>=60',
-                        y: 14.3
-                    }]
-                }, ]
-            });
+                    return false;
+                }
+
+                function check() {
+                    if (loaded === files.length) {
+                        for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
+                            try {
+                                window.HighchartsEditor.ondone[i]();
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                        window.HighchartsEditor.hasLoaded = true;
+                    }
+                }
+
+                function include(script) {
+                    function next() {
+                        ++loaded;
+                        if (loaded < files.length) {
+                            include(files[loaded]);
+                        }
+                        check();
+                    }
+                    if (isScriptAlreadyIncluded(script)) {
+                        return next();
+                    }
+                    var sc = document.createElement("script");
+                    sc.src = script;
+                    sc.type = "text/javascript";
+                    sc.onload = function() {
+                        next();
+                    };
+                    document.head.appendChild(sc);
+                }
+
+                function each(a, fn) {
+                    if (typeof a.forEach !== "undefined") {
+                        a.forEach(fn);
+                    } else {
+                        for (var i = 0; i < a.length; i++) {
+                            if (fn) {
+                                fn(a[i]);
+                            }
+                        }
+                    }
+                }
+                var inc = {},
+                    incl = [];
+                each(document.querySelectorAll("script"), function(t) {
+                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+                });
+
+                function cl() {
+                    if (typeof window["Highcharts"] !== "undefined") {
+                        var options = {
+                            "chart": {
+                                "plotBackgroundColor": null,
+                                "plotBorderWidth": null,
+                                "plotShadow": false,
+                                "type": "pie"
+                            },
+                            "title": {
+                                "text": "Browser market shares in January, 2018"
+                            },
+                            "tooltip": {
+                                "pointFormat": "{series.name}: <b>{point.percentage:.1f}%</b>"
+                            },
+                            "plotOptions": {
+                                "pie": {
+                                    "allowPointSelect": true,
+                                    "cursor": "pointer",
+                                    "dataLabels": {
+                                        "enabled": true,
+                                        "format": "<b>{point.name}</b>: {point.percentage:.1f} %",
+                                        "style": {
+                                            "color": "black"
+                                        },
+                                        "connectorColor": "silver"
+                                    }
+                                },
+                                "series": {
+                                    "animation": false
+                                }
+                            },
+                            "series": [{
+                                "turboThreshold": 0,
+                                "_colorIndex": 0,
+                                "_symbolIndex": 0
+                            }],
+                            "data": {
+                                "csv": "\"Category\";\"Male\"\n\"10-14\";5\n\"15-19\";7.2\n\"20-29\";17.1\n\"30-39\";17.9\n\"40-49\";18.1\n\"50-59\";20.4\n\">=60\";14.3",
+                                "googleSpreadsheetKey": false,
+                                "googleSpreadsheetWorksheet": false
+                            }
+                        };
+                        /*
+                            // Sample of extending options:
+                            Highcharts.merge(true, options, {
+                                chart: {
+                                    backgroundColor: "#bada55"
+                                },
+                                plotOptions: {
+                                    series: {
+                                        cursor: "pointer",
+                                        events: {
+                                            click: function(event) {
+                                                alert(this.name + " clicked\n" +
+                                                      "Alt: " + event.altKey + "\n" +
+                                                      "Control: " + event.ctrlKey + "\n" +
+                                                      "Shift: " + event.shiftKey + "\n");
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                            */
+                        new Highcharts.Chart("highcharts-a1a04fdc-5ba5-4776-88fe-dc0354504378", options);
+                    }
+                }
+            })();
         </script>
     </body>
 
