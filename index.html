@@ -2,6 +2,14 @@
 
     <head>
         <title>Page Title</title>
+        <style>
+            #container {
+                min-width: 310px;
+                max-width: 800px;
+                height: 400px;
+                margin: 0 auto
+            }
+        </style>
     </head>
 
     <body>
@@ -13,107 +21,197 @@
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="highcharts-593be1cb-ceda-4113-b04a-92cb1ae35056" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container3" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+
+        <div id="highcharts-7b1c9fa6-90ca-48b5-a3c7-ec9bdc194cd5"></div>
         <script>
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'scatter',
-                    zoomType: 'xy'
-                },
-                title: {
-                    text: 'Candidates, elected members in the Legislative Council by Sex'
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Year'
-                    },
-                    startOnTick: true,
-                    endOnTick: true,
-                    showLastLabel: true
-                },
-                yAxis: {
-                    title: {
-                        text: 'Number'
+            (function() {
+                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
+                    loaded = 0;
+                if (typeof window["HighchartsEditor"] === "undefined") {
+                    window.HighchartsEditor = {
+                        ondone: [cl],
+                        hasWrapped: false,
+                        hasLoaded: false
+                    };
+                    include(files[0]);
+                } else {
+                    if (window.HighchartsEditor.hasLoaded) {
+                        cl();
+                    } else {
+                        window.HighchartsEditor.ondone.push(cl);
                     }
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'left',
-                    verticalAlign: 'top',
-                    x: 100,
-                    y: 70,
-                    floating: true,
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-                    borderWidth: 1
-                },
-                plotOptions: {
-                    scatter: {
-                        marker: {
-                            radius: 5,
-                            states: {
-                                hover: {
-                                    enabled: true,
-                                    lineColor: 'rgb(100,100,100)'
-                                }
+                }
+
+                function isScriptAlreadyIncluded(src) {
+                    var scripts = document.getElementsByTagName("script");
+                    for (var i = 0; i < scripts.length; i++) {
+                        if (scripts[i].hasAttribute("src")) {
+                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
+                                return true;
                             }
-                        },
-                        states: {
-                            hover: {
-                                marker: {
-                                    enabled: false
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<b>{series.name}</b><br>',
                         }
                     }
-                },
-                series: [{
-                    name: 'Female Candidate',
-                    color: 'rgba(223, 83, 83, .5)',
-                    data: [
-                        [2000, 28],
-                        [2004, 26],
-                        [2008, 38],
-                        [2012, 56],
-                        [2016, 53]
-                    ]
+                    return false;
+                }
 
-                }, {
-                    name: 'Male Candidate',
-                    color: 'rgba(119, 152, 191, .5)',
-                    data: [
-                        [2000, 127],
-                        [2004, 133],
-                        [2008, 163],
-                        [2012, 231],
-                        [2016, 245]
-                    ]
-                }, {
-                    name: 'Female Elected Members',
-                    color: 'rgba(204, 153, 255, .5)',
-                    data: [
-                        [2000, 10],
-                        [2004, 10],
-                        [2008, 11],
-                        [2012, 11],
-                        [2016, 12]
-                    ]
-                }, {
-                    name: 'Male Elected Members',
-                    color: 'rgba(204, 255, 153, .5)',
-                    data: [
-                        [2000, 50],
-                        [2004, 49],
-                        [2008, 49],
-                        [2012, 59],
-                        [2016, 58]
-                    ]
-                }]
-            });
+                function check() {
+                    if (loaded === files.length) {
+                        for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
+                            try {
+                                window.HighchartsEditor.ondone[i]();
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                        window.HighchartsEditor.hasLoaded = true;
+                    }
+                }
 
+                function include(script) {
+                    function next() {
+                        ++loaded;
+                        if (loaded < files.length) {
+                            include(files[loaded]);
+                        }
+                        check();
+                    }
+                    if (isScriptAlreadyIncluded(script)) {
+                        return next();
+                    }
+                    var sc = document.createElement("script");
+                    sc.src = script;
+                    sc.type = "text/javascript";
+                    sc.onload = function() {
+                        next();
+                    };
+                    document.head.appendChild(sc);
+                }
 
+                function each(a, fn) {
+                    if (typeof a.forEach !== "undefined") {
+                        a.forEach(fn);
+                    } else {
+                        for (var i = 0; i < a.length; i++) {
+                            if (fn) {
+                                fn(a[i]);
+                            }
+                        }
+                    }
+                }
+                var inc = {},
+                    incl = [];
+                each(document.querySelectorAll("script"), function(t) {
+                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+                });
+
+                function cl() {
+                    if (typeof window["Highcharts"] !== "undefined") {
+                        var options = {
+                            "title": {
+                                "text": "Solar Employment Growth by Sector, 2010-2016"
+                            },
+                            "subtitle": {
+                                "text": "Source: thesolarfoundation.com"
+                            },
+                            "yAxis": [{
+                                "title": {
+                                    "text": "Number of Employees"
+                                }
+                            }],
+                            "legend": {
+                                "layout": "vertical",
+                                "align": "right",
+                                "verticalAlign": "middle"
+                            },
+                            "plotOptions": {
+                                "series": {
+                                    "label": {
+                                        "connectorAllowed": false
+                                    },
+                                    "pointStart": 2010,
+                                    "animation": false,
+                                    "dataLabels": {
+                                        "enabled": true,
+                                        "format": "{point.label}"
+                                    }
+                                }
+                            },
+                            "series": [{
+                                "turboThreshold": 0,
+                                "_colorIndex": 0,
+                                "_symbolIndex": 0
+                            }, {
+                                "turboThreshold": 0,
+                                "_colorIndex": 1,
+                                "_symbolIndex": 0,
+                                "type": "line"
+                            }, {
+                                "turboThreshold": 0,
+                                "_colorIndex": 2,
+                                "_symbolIndex": 0,
+                                "type": "line"
+                            }, {
+                                "turboThreshold": 0,
+                                "_colorIndex": 3,
+                                "_symbolIndex": 0,
+                                "type": "line"
+                            }],
+                            "responsive": {
+                                "rules": [{
+                                    "condition": {
+                                        "maxWidth": 500
+                                    },
+                                    "chartOptions": {
+                                        "legend": {
+                                            "layout": "horizontal",
+                                            "align": "center",
+                                            "verticalAlign": "bottom"
+                                        }
+                                    },
+                                    "_id": "highcharts-xladz6r-44"
+                                }]
+                            },
+                            "data": {
+                                "csv": "\"Year\";\"Male Candidate\";\"Female Candidate\";\"Elected Male Member\";\"Elected Female Member\"\n2000;127;28;50;10\n2004;133;26;49;10\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12",
+                                "googleSpreadsheetKey": false,
+                                "googleSpreadsheetWorksheet": false
+                            },
+                            "tooltip": {
+                                "enabled": true,
+                                "shared": true
+                            }
+                        };
+                        /*
+                                    // Sample of extending options:
+                                    Highcharts.merge(true, options, {
+                                        chart: {
+                                            backgroundColor: "#bada55"
+                                        },
+                                        plotOptions: {
+                                            series: {
+                                                cursor: "pointer",
+                                                events: {
+                                                    click: function(event) {
+                                                        alert(this.name + " clicked\n" +
+                                                              "Alt: " + event.altKey + "\n" +
+                                                              "Control: " + event.ctrlKey + "\n" +
+                                                              "Shift: " + event.shiftKey + "\n");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                                    */
+                        new Highcharts.Chart("highcharts-7b1c9fa6-90ca-48b5-a3c7-ec9bdc194cd5", options);
+                    }
+                }
+            })();
+        </script>
+
+        <script>
             Highcharts.chart('container2', {
                 chart: {
                     type: 'column'
@@ -122,7 +220,9 @@
                     text: 'Voter turnout in Legislative Council election in 2016 by Sex'
                 },
                 xAxis: {
-                    categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66-70', '>=71']
+                    categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65',
+                        '66-70', '>=71'
+                    ]
                 },
                 yAxis: {
                     min: 0,
@@ -144,10 +244,11 @@
                     data: [34995, 72750, 73411, 75126, 77811, 91477, 107281, 134033, 132631, 105949, 84014, 114431]
                 }, {
                     name: 'Male',
-                    data: [36884, 72417, 76912, 78837, 77966, 83466, 92576, 119499, 130187, 106657, 88684, 131429]
+                    data: [36884, 72417, 76912, 78837, 77966, 83466, 92576, 119499,
+                        130187, 106657, 88684, 131429
+                    ]
                 }]
             });
-
             Highcharts.chart('container3', {
                 chart: {
                     type: 'area'
@@ -159,7 +260,9 @@
                     allowDecimals: false,
                     labels: {
                         formatter: function() {
-                            return this.value; // clean, unformatted number for year
+                            return this.value; // clean, unformatted
+                            number
+                            for year
                         }
                     }
                 },
@@ -415,6 +518,7 @@
                 }]
             });
         </script>
+
 
     </body>
 
