@@ -29,7 +29,7 @@
         <p>The figure of gender differences in voter turnout is not sificant for the nearest election year of Legislative Council election. It fluctuates between 49 to 51%.</p>
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <p>There is a slight drop in the number of civiil servants between </p>
-        <div id="container3" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
+        <div id="highcharts-bf01ec8e-4fde-4a43-b0b2-fd01f218a873"></div>
         <p>In the civil service, the number of female directorate officers increased significantly from 57 in 1986 to 455 in 2016. The proportion of female civil servants also rose progressively from 29.2% to 37.6% over the same period.</p>
         <div id="container4" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <h2>Social Welfare</h2>
@@ -249,59 +249,170 @@
                 }
 
             );
-            Highcharts.chart('container3', {
-                    chart: {
-                        type: 'area'
-                    },
-                    title: {
-                        text: 'Civil servants by Sex'
-                    },
-                    xAxis: {
-                        allowDecimals: false,
-                        labels: {
-                            formatter: function() {
-                                return this.value; // clean, unformatted
-                            }
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Civil Servant'
-                        },
-                        labels: {
-                            formatter: function() {
-                                return this.value / 1000 + 'k';
-                            }
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name} <b>{point.y:,.0f}'
-                    },
-                    plotOptions: {
-                        area: {
-                            pointStart: 1986,
-                            marker: {
-                                enabled: false,
-                                symbol: 'circle',
-                                radius: 2,
-                                states: {
-                                    hover: {
-                                        enabled: true
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Male',
-                        data: [126127, 127558, 125069, 116051, 101957, 102488, 104704]
-                    }, {
-                        name: 'Female',
-                        data: [51967, 59448, 59173, 59498, 51867, 56039, 61911]
-                    }, ]
+        </script>
+
+        <script>
+            (function() {
+                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
+                    loaded = 0;
+                if (typeof window["HighchartsEditor"] === "undefined") {
+                    window.HighchartsEditor = {
+                        ondone: [cl],
+                        hasWrapped: false,
+                        hasLoaded: false
+                    };
+                    include(files[0]);
+                } else {
+                    if (window.HighchartsEditor.hasLoaded) {
+                        cl();
+                    } else {
+                        window.HighchartsEditor.ondone.push(cl);
+                    }
                 }
 
-            );
+                function isScriptAlreadyIncluded(src) {
+                    var scripts = document.getElementsByTagName("script");
+                    for (var i = 0; i < scripts.length; i++) {
+                        if (scripts[i].hasAttribute("src")) {
+                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+                function check() {
+                    if (loaded === files.length) {
+                        for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
+                            try {
+                                window.HighchartsEditor.ondone[i]();
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                        window.HighchartsEditor.hasLoaded = true;
+                    }
+                }
+
+                function include(script) {
+                    function next() {
+                        ++loaded;
+                        if (loaded < files.length) {
+                            include(files[loaded]);
+                        }
+                        check();
+                    }
+                    if (isScriptAlreadyIncluded(script)) {
+                        return next();
+                    }
+                    var sc = document.createElement("script");
+                    sc.src = script;
+                    sc.type = "text/javascript";
+                    sc.onload = function() {
+                        next();
+                    };
+                    document.head.appendChild(sc);
+                }
+
+                function each(a, fn) {
+                    if (typeof a.forEach !== "undefined") {
+                        a.forEach(fn);
+                    } else {
+                        for (var i = 0; i < a.length; i++) {
+                            if (fn) {
+                                fn(a[i]);
+                            }
+                        }
+                    }
+                }
+                var inc = {},
+                    incl = [];
+                each(document.querySelectorAll("script"), function(t) {
+                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+                });
+
+                function cl() {
+                    if (typeof window["Highcharts"] !== "undefined") {
+                        var options = {
+                            "chart": {
+                                "type": "area"
+                            },
+                            "title": {
+                                "text": "Civil servants by Sex"
+                            },
+                            "xAxis": [{
+                                "allowDecimals": false,
+                                "labels": {}
+                            }],
+                            "yAxis": [{
+                                "title": {
+                                    "text": "Civil Servant"
+                                },
+                                "labels": {}
+                            }],
+                            "tooltip": {
+                                "pointFormat": "{series.name} <b>{point.y:,.0f}"
+                            },
+                            "plotOptions": {
+                                "area": {
+                                    "pointStart": 1986,
+                                    "marker": {
+                                        "enabled": false,
+                                        "symbol": "circle",
+                                        "radius": 2,
+                                        "states": {
+                                            "hover": {
+                                                "enabled": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "series": {
+                                    "animation": false
+                                }
+                            },
+                            "series": [{
+                                "turboThreshold": 0,
+                                "_colorIndex": 0,
+                                "_symbolIndex": 0
+                            }, {
+                                "turboThreshold": 0,
+                                "_colorIndex": 1,
+                                "_symbolIndex": 0,
+                                "type": "area"
+                            }],
+                            "data": {
+                                "csv": "\"Category\";\"Male\";\"Female\"\n1986;126127;51967\n1991;127558;59448\n1996;125069;59173\n2001;116051;59498\n2006;101957;51867\n2011;102488;56039\n2016;104704;61911",
+                                "googleSpreadsheetKey": false,
+                                "googleSpreadsheetWorksheet": false
+                            }
+                        };
+                        /*
+                                // Sample of extending options:
+                                Highcharts.merge(true, options, {
+                                    chart: {
+                                        backgroundColor: "#bada55"
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            cursor: "pointer",
+                                            events: {
+                                                click: function(event) {
+                                                    alert(this.name + " clicked\n" +
+                                                          "Alt: " + event.altKey + "\n" +
+                                                          "Control: " + event.ctrlKey + "\n" +
+                                                          "Shift: " + event.shiftKey + "\n");
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                                */
+                        new Highcharts.Chart("highcharts-bf01ec8e-4fde-4a43-b0b2-fd01f218a873", options);
+                    }
+                }
+            })();
         </script>
 
         <script>
@@ -505,4 +616,4 @@
         </script>
     </body>
 
-</html>
+    </html
