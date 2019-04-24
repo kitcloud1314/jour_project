@@ -10,22 +10,20 @@
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-        <div id="highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7" style="margin: 0 auto"></div>
-        <div id="container2" style="margin: 0 auto"></div>
-        <div id="container3" style="margin: 0 auto"></div>
-        <div id="container4" style=" margin: 0 auto"></div>
-        <div id="container5" style="margin: 0 auto"></div>
-        <div id="container6" style="margin: 0 auto "></div>
-        <div id="container7" style="margin: 0 auto"></div>
-        <div id="container8" style="margin: 0 auto"></div>
+        <div id="highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
+        <div id="container2 " style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
+        <div id="container3 " style="min-width: 310px; height: 400px; max-width: 800px;margin: 0 auto "></div>
+        <div id="container4 " style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
+        <div id="container5 " style="min-width: 310px; height: 400px; max-width: 800px;margin: 0 auto "></div>
+        <div id="container6 " style="min-width: 310px; height: 400px; max-width: 800px;margin: 0 auto "></div>
 
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
 
         <script>
             (function() {
-                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
+                var files = ["https://code.highcharts.com/stock/highstock.js ", "https://code.highcharts.com/highcharts-more.js ", "https://code.highcharts.com/highcharts-3d.js ", "https://code.highcharts.com/modules/data.js ", "https://code.highcharts.com/modules/exporting.js", "https: //code.highcharts.com/modules/funnel.js ", "https://code.highcharts.com/6.0.2/modules/annotations.js ", "https://code.highcharts.com/modules/solid-gauge.js "],
                     loaded = 0;
-                if (typeof window["HighchartsEditor"] === "undefined") {
+                if (typeof window["HighchartsEditor "] === "undefined ") {
                     window.HighchartsEditor = {
                         ondone: [cl],
                         hasWrapped: false,
@@ -41,10 +39,10 @@
                 }
 
                 function isScriptAlreadyIncluded(src) {
-                    var scripts = document.getElementsByTagName("script");
+                    var scripts = document.getElementsByTagName("script ");
                     for (var i = 0; i < scripts.length; i++) {
-                        if (scripts[i].hasAttribute("src")) {
-                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
+                        if (scripts[i].hasAttribute("src ")) {
+                            if ((scripts[i].getAttribute("src ") || " ").indexOf(src) >= 0 || (scripts[i].getAttribute("src ") === "http://code.highcharts.com/highcharts.js " && src === "https://code.highcharts.com/stock/highstock.js ")) {
                                 return true;
                             }
                         }
@@ -76,9 +74,9 @@
                     if (isScriptAlreadyIncluded(script)) {
                         return next();
                     }
-                    var sc = document.createElement("script");
+                    var sc = document.createElement("script ");
                     sc.src = script;
-                    sc.type = "text/javascript";
+                    sc.type = "text/javascript ";
                     sc.onload = function() {
                         next();
                     };
@@ -86,7 +84,7 @@
                 }
 
                 function each(a, fn) {
-                    if (typeof a.forEach !== "undefined") {
+                    if (typeof a.forEach !== "undefined ") {
                         a.forEach(fn);
                     } else {
                         for (var i = 0; i < a.length; i++) {
@@ -98,95 +96,100 @@
                 }
                 var inc = {},
                     incl = [];
-                each(document.querySelectorAll("script"), function(t) {
-                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+                each(document.querySelectorAll("script "), function(t) {
+                    inc[t.src.substr(0, t.src.indexOf("? "))] = 1;
                 });
 
                 function cl() {
-                    if (typeof window["Highcharts"] !== "undefined") {
+                    if (typeof window["Highcharts "] !== "undefined ") {
                         var options = {
-                            "title": {
-                                "text": "Candidates, elected members and appointed members in Government Councils(Based on Election Year) by Sex"
+                            "title ": {
+                                "text ": "Candidates, elected members and appointed members in Government Councils(Based on Election Year) by Sex "
                             },
-                            "yAxis": [{
-                                "title": {
-                                    "text": "Number"
+                            "yAxis ": [{
+                                "title ": {
+                                    "text ": "Number "
                                 }
                             }],
-                            "legend": {
-                                "layout": "vertical",
-                                "align": "right",
-                                "verticalAlign": "middle"
+                            "legend ": {
+                                "layout ": "vertical ",
+                                "align ": "right ",
+                                "verticalAlign ": "middle "
                             },
-                            "plotOptions": {
-                                "series": {
-                                    "label": {
-                                        "connectorAllowed": false
+                            "plotOptions ": {
+                                "series ": {
+                                    "label ": {
+                                        "connectorAllowed ": false
                                     },
-                                    "pointStart": 2010,
-                                    "animation": false
+                                    "pointStart ": 2010,
+                                    "animation ": false
                                 }
                             },
-                            "series": [{
-                                "turboThreshold": 0,
-                                "_colorIndex": 0,
-                                "_symbolIndex": 0
+                            "series ": [{
+                                "turboThreshold ": 0,
+                                "_colorIndex ": 0,
+                                "_symbolIndex ": 0
                             }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 1,
-                                "_symbolIndex": 0
+                                "turboThreshold ": 0,
+                                "_colorIndex ": 1,
+                                "_symbolIndex ": 0
                             }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 2,
-                                "_symbolIndex": 0
+                                "turboThreshold ": 0,
+                                "_colorIndex ": 2,
+                                "_symbolIndex ": 0
                             }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 3,
-                                "_symbolIndex": 0
+                                "turboThreshold ": 0,
+                                "_colorIndex ": 3,
+                                "_symbolIndex ": 0
                             }],
-                            "responsive": {
-                                "rules": [{
-                                    "condition": {
-                                        "maxWidth": 500
+                            "responsive ": {
+                                "rules ": [{
+                                    "condition ": {
+                                        "maxWidth ": 500
                                     },
-                                    "chartOptions": {
-                                        "legend": {
-                                            "layout": "horizontal",
-                                            "align": "center",
-                                            "verticalAlign": "bottom"
+                                    "chartOptions ": {
+                                        "legend ": {
+                                            "layout ": "horizontal ",
+                                            "align ": "center ",
+                                            "verticalAlign ": "bottom "
                                         }
                                     },
-                                    "_id": "highcharts-yl9h627-24"
+                                    "_id ": "highcharts-yl9h627-24 "
                                 }]
                             },
-                            "data": {
-                                "csv": "\"Category\";\"Male Candiate\";\"Female Candidate\";\"Male Elected Member\";\"Female Elected Member\"\n2000;127;28;50;10\n2004;113;26;49;11\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12",
-                                "googleSpreadsheetKey": false,
-                                "googleSpreadsheetWorksheet": false
+                            "data ": {
+                                "csv ": "\ "
+                                Category\ ";\ "
+                                Male Candidate\ ";\ "
+                                Female Candidate\ ";\ "
+                                Male Elected Member\ ";\ "
+                                Female Elected Member\ "\n2000;127;28;50;10\n2004;113;26;49;11\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12 ",
+                                "googleSpreadsheetKey ": false,
+                                "googleSpreadsheetWorksheet ": false
                             }
                         };
                         /*
                             // Sample of extending options:
                             Highcharts.merge(true, options, {
                                 chart: {
-                                    backgroundColor: "#bada55"
+                                    backgroundColor: "#bada55 "
                                 },
                                 plotOptions: {
                                     series: {
-                                        cursor: "pointer",
+                                        cursor: "pointer ",
                                         events: {
                                             click: function(event) {
-                                                alert(this.name + " clicked\n" +
-                                                      "Alt: " + event.altKey + "\n" +
-                                                      "Control: " + event.ctrlKey + "\n" +
-                                                      "Shift: " + event.shiftKey + "\n");
+                                                alert(this.name + " clicked\n " +
+                                                      "Alt: " + event.altKey + "\n " +
+                                                      "Control: " + event.ctrlKey + "\n " +
+                                                      "Shift: " + event.shiftKey + "\n ");
                                             }
                                         }
                                     }
                                 }
                             });
                             */
-                        new Highcharts.Chart("highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7", options);
+                        new Highcharts.Chart("highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7 ", options);
                     }
                 }
             })();
@@ -477,62 +480,6 @@
             });
         </script>
 
-        <script>
-            Highcharts.chart('container8', {
-                chart: {
-                    type: 'area'
-                },
-                title: {
-                    text: 'Historic and Estimated Worldwide Population Distribution by Region'
-                },
-                subtitle: {
-                    text: 'Source: Wikipedia.org'
-                },
-                xAxis: {
-                    categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-                    tickmarkPlacement: 'on',
-                    title: {
-                        enabled: false
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Percent'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
-                    split: true
-                },
-                plotOptions: {
-                    area: {
-                        stacking: 'percent',
-                        lineColor: '#ffffff',
-                        lineWidth: 1,
-                        marker: {
-                            lineWidth: 1,
-                            lineColor: '#ffffff'
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Asia',
-                    data: [502, 635, 809, 947, 1402, 3634, 5268]
-                }, {
-                    name: 'Africa',
-                    data: [106, 107, 111, 133, 221, 767, 1766]
-                }, {
-                    name: 'Europe',
-                    data: [163, 203, 276, 408, 547, 729, 628]
-                }, {
-                    name: 'America',
-                    data: [18, 31, 54, 156, 339, 818, 1201]
-                }, {
-                    name: 'Oceania',
-                    data: [2, 2, 2, 6, 13, 30, 46]
-                }]
-            });
-        </script>
     </body>
 
 </html>
