@@ -395,7 +395,72 @@
             });
         </script>
 
+        <script>
+            Highcharts.chart('container4', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total fruit consumtion, grouped by gender'
+                },
+                xAxis: {
+                    categories: [1996, 2001, 2006, 2011, 2016]
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Number of fruits'
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>' + 'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
 
+                series: [{
+                    name: 'Old Age',
+                    data: [46405, 81493, 95881, 94310, 83863],
+                    stack: 'male'
+                }, {
+                    name: 'Old Age',
+                    data: [50573, 91151, 106022, 102349, 92973],
+                    stack: 'male'
+                }, {
+                    name: 'Permanent Disability',
+                    data: [8794, 11122, 14657, 13757, 12187],
+                    stack: 'male'
+                }, {
+                    name: 'Permanent Disability',
+                    data: [7068, 8828, 12677, 12188, 11274],
+                    stack: 'male'
+                }, {
+                    name: 'Ill health',
+                    data: [2, 5, 6, 2, 1],
+                    stack: 'male'
+                }, {
+                    name: 'Single parent',
+                    data: [3, 0, 4, 4, 3],
+                    stack: 'female'
+                }, {
+                    name: 'Low-earnings',
+                    data: [5, 3, 4, 7, 2],
+                    stack: 'male'
+                }, {
+                    name: 'Unemployment',
+                    data: [2, 5, 6, 2, 1],
+                    stack: 'female'
+                }, {
+                    name: 'Others',
+                    data: [3, 4, 4, 2, 5],
+                    stack: 'male'
+                }]
+            });
+        </script>
     </body>
-
-</html>
