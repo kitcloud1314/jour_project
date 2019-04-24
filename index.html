@@ -495,78 +495,25 @@
                 })
             });
 
-            // Build the chart
-            Highcharts.chart('container7', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: 'Browser market shares in January, 2018'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
+            <
+            script >
+                // Radialize the colors
+                Highcharts.setOptions({
+                    colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
+                        return {
+                            radialGradient: {
+                                cx: 0.5,
+                                cy: 0.3,
+                                r: 0.7
                             },
-                            connectorColor: 'silver'
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Female',
-                    data: [{
-                        name: '10-14',
-                        y: 4.7
-                    }, {
-                        name: '15-19',
-                        y: 6.1
-                    }, {
-                        name: '20-29',
-                        y: 16.7
-                    }, {
-                        name: '30-39',
-                        y: 19.8
-                    }, {
-                        name: '40-49',
-                        y: 21.4
-                    }, {
-                        name: '50-59',
-                        y: 19.9
-                    }, {
-                        name: '>=60',
-                        y: 11.5
-                    }]
-                }]
-            });
-        </script>
-        <script>
-            // Radialize the colors
-            Highcharts.setOptions({
-                colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
-                    return {
-                        radialGradient: {
-                            cx: 0.5,
-                            cy: 0.3,
-                            r: 0.7
-                        },
-                        stops: [
-                            [0, color],
-                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                        ]
-                    };
-                })
-            });
+                            stops: [
+                                [0, color],
+                                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                            ]
+                        };
+                    })
+                });
 
             // Build the chart
             Highcharts.chart('container8', {
