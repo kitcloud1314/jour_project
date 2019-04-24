@@ -2,484 +2,482 @@
 
     <head>
         <title>Page Title</title>
+        <style>
+            h2 {
+                font-size: 40px;
+            }
+            
+            p {
+                font-size: 15px;
+            }
+        </style>
     </head>
 
     <body>
-
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
         <h2>Pattern of Participation in Public Affairs</h2>
         <p>In Hong Kong, women and men have equal right to vote and stand for elections. Whilst there were still far more male than female candidates who stood for election as members of different Government Councils, the number of female candidates had
             registered significant growth over the past 2 decades or so. Except for the age group 71 and over, the turnout rates for both sexes were broadly similar across all age groups in recent years. Males aged 71 and over still had higher turnout
-            rates than their female counterparts in various elections.
-        </p>
+            rates than their female counterparts in various elections. </p>
         <div id="highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container3" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container4" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <div id="container5" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <div id="container6" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
-
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
-
         <script>
             (function() {
-                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
-                    loaded = 0;
-                if (typeof window["HighchartsEditor"] === "undefined") {
-                    window.HighchartsEditor = {
-                        ondone: [cl],
-                        hasWrapped: false,
-                        hasLoaded: false
-                    };
-                    include(files[0]);
-                } else {
-                    if (window.HighchartsEditor.hasLoaded) {
-                        cl();
-                    } else {
-                        window.HighchartsEditor.ondone.push(cl);
-                    }
-                }
-
-                function isScriptAlreadyIncluded(src) {
-                    var scripts = document.getElementsByTagName("script");
-                    for (var i = 0; i < scripts.length; i++) {
-                        if (scripts[i].hasAttribute("src")) {
-                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
-                                return true;
-                            }
-                        }
-                    }
-                    return false;
-                }
-
-                function check() {
-                    if (loaded === files.length) {
-                        for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
-                            try {
-                                window.HighchartsEditor.ondone[i]();
-                            } catch (e) {
-                                console.error(e);
-                            }
-                        }
-                        window.HighchartsEditor.hasLoaded = true;
-                    }
-                }
-
-                function include(script) {
-                    function next() {
-                        ++loaded;
-                        if (loaded < files.length) {
-                            include(files[loaded]);
-                        }
-                        check();
-                    }
-                    if (isScriptAlreadyIncluded(script)) {
-                        return next();
-                    }
-                    var sc = document.createElement("script");
-                    sc.src = script;
-                    sc.type = "text/javascript";
-                    sc.onload = function() {
-                        next();
-                    };
-                    document.head.appendChild(sc);
-                }
-
-                function each(a, fn) {
-                    if (typeof a.forEach !== "undefined") {
-                        a.forEach(fn);
-                    } else {
-                        for (var i = 0; i < a.length; i++) {
-                            if (fn) {
-                                fn(a[i]);
-                            }
-                        }
-                    }
-                }
-                var inc = {},
-                    incl = [];
-                each(document.querySelectorAll("script"), function(t) {
-                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
-                });
-
-                function cl() {
-                    if (typeof window["Highcharts"] !== "undefined") {
-                        var options = {
-                            "title": {
-                                "text": "Candidates, elected members and appointed members in Government Councils(Based on Election Year) by Sex"
-                            },
-                            "yAxis": [{
-                                "title": {
-                                    "text": "Number"
-                                }
-                            }],
-                            "legend": {
-                                "layout": "vertical",
-                                "align": "right",
-                                "verticalAlign": "middle"
-                            },
-                            "plotOptions": {
-                                "series": {
-                                    "label": {
-                                        "connectorAllowed": false
-                                    },
-                                    "pointStart": 2010,
-                                    "animation": false
-                                }
-                            },
-                            "series": [{
-                                "turboThreshold": 0,
-                                "_colorIndex": 0,
-                                "_symbolIndex": 0
-                            }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 1,
-                                "_symbolIndex": 0
-                            }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 2,
-                                "_symbolIndex": 0
-                            }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 3,
-                                "_symbolIndex": 0
-                            }],
-                            "responsive": {
-                                "rules": [{
-                                    "condition": {
-                                        "maxWidth": 500
-                                    },
-                                    "chartOptions": {
-                                        "legend": {
-                                            "layout": "horizontal",
-                                            "align": "center",
-                                            "verticalAlign": "bottom"
-                                        }
-                                    },
-                                    "_id": "highcharts-yl9h627-24"
-                                }]
-                            },
-                            "data": {
-                                "csv": "\"Category\";\"Male Candiate\";\"Female Candidate\";\"Male Elected Member\";\"Female Elected Member\"\n2000;127;28;50;10\n2004;113;26;49;11\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12",
-                                "googleSpreadsheetKey": false,
-                                "googleSpreadsheetWorksheet": false
-                            }
+                    var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
+                        loaded = 0;
+                    if (typeof window["HighchartsEditor"] === "undefined") {
+                        window.HighchartsEditor = {
+                            ondone: [cl],
+                            hasWrapped: false,
+                            hasLoaded: false
                         };
-                        /*
-                            // Sample of extending options:
-                            Highcharts.merge(true, options, {
-                                chart: {
-                                    backgroundColor: "#bada55"
+                        include(files[0]);
+                    } else {
+                        if (window.HighchartsEditor.hasLoaded) {
+                            cl();
+                        } else {
+                            window.HighchartsEditor.ondone.push(cl);
+                        }
+                    }
+
+                    function isScriptAlreadyIncluded(src) {
+                        var scripts = document.getElementsByTagName("script");
+                        for (var i = 0; i < scripts.length; i++) {
+                            if (scripts[i].hasAttribute("src")) {
+                                if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+
+                    function check() {
+                        if (loaded === files.length) {
+                            for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
+                                try {
+                                    window.HighchartsEditor.ondone[i]();
+                                } catch (e) {
+                                    console.error(e);
+                                }
+                            }
+                            window.HighchartsEditor.hasLoaded = true;
+                        }
+                    }
+
+                    function include(script) {
+                        function next() {
+                            ++loaded;
+                            if (loaded < files.length) {
+                                include(files[loaded]);
+                            }
+                            check();
+                        }
+                        if (isScriptAlreadyIncluded(script)) {
+                            return next();
+                        }
+                        var sc = document.createElement("script");
+                        sc.src = script;
+                        sc.type = "text/javascript";
+                        sc.onload = function() {
+                            next();
+                        };
+                        document.head.appendChild(sc);
+                    }
+
+                    function each(a, fn) {
+                        if (typeof a.forEach !== "undefined") {
+                            a.forEach(fn);
+                        } else {
+                            for (var i = 0; i < a.length; i++) {
+                                if (fn) {
+                                    fn(a[i]);
+                                }
+                            }
+                        }
+                    }
+                    var inc = {},
+                        incl = [];
+                    each(document.querySelectorAll("script"), function(t) {
+                        inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+                    });
+
+                    function cl() {
+                        if (typeof window["Highcharts"] !== "undefined") {
+                            var options = {
+                                "title": {
+                                    "text": "Candidates, elected members and appointed members in Government Councils(Based on Election Year) by Sex"
                                 },
-                                plotOptions: {
-                                    series: {
-                                        cursor: "pointer",
-                                        events: {
-                                            click: function(event) {
-                                                alert(this.name + " clicked\n" +
-                                                      "Alt: " + event.altKey + "\n" +
-                                                      "Control: " + event.ctrlKey + "\n" +
-                                                      "Shift: " + event.shiftKey + "\n");
+                                "yAxis": [{
+                                    "title": {
+                                        "text": "Number"
+                                    }
+                                }],
+                                "legend": {
+                                    "layout": "vertical",
+                                    "align": "right",
+                                    "verticalAlign": "middle"
+                                },
+                                "plotOptions": {
+                                    "series": {
+                                        "label": {
+                                            "connectorAllowed": false
+                                        },
+                                        "pointStart": 2010,
+                                        "animation": false
+                                    }
+                                },
+                                "series": [{
+                                    "turboThreshold": 0,
+                                    "_colorIndex": 0,
+                                    "_symbolIndex": 0
+                                }, {
+                                    "turboThreshold": 0,
+                                    "_colorIndex": 1,
+                                    "_symbolIndex": 0
+                                }, {
+                                    "turboThreshold": 0,
+                                    "_colorIndex": 2,
+                                    "_symbolIndex": 0
+                                }, {
+                                    "turboThreshold": 0,
+                                    "_colorIndex": 3,
+                                    "_symbolIndex": 0
+                                }],
+                                "responsive": {
+                                    "rules": [{
+                                        "condition": {
+                                            "maxWidth": 500
+                                        },
+                                        "chartOptions": {
+                                            "legend": {
+                                                "layout": "horizontal",
+                                                "align": "center",
+                                                "verticalAlign": "bottom"
+                                            }
+                                        },
+                                        "_id": "highcharts-yl9h627-24"
+                                    }]
+                                },
+                                "data": {
+                                    "csv": "\"Category\";\"Male Candiate\";\"Female Candidate\";\"Male Elected Member\";\"Female Elected Member\"\n2000;127;28;50;10\n2004;113;26;49;11\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12",
+                                    "googleSpreadsheetKey": false,
+                                    "googleSpreadsheetWorksheet": false
+                                }
+                            };
+                            /*
+                                // Sample of extending options:
+                                Highcharts.merge(true, options, {
+                                    chart: {
+                                        backgroundColor: "#bada55"
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            cursor: "pointer",
+                                            events: {
+                                                click: function(event) {
+                                                    alert(this.name + " clicked\n" +
+                                                          "Alt: " + event.altKey + "\n" +
+                                                          "Control: " + event.ctrlKey + "\n" +
+                                                          "Shift: " + event.shiftKey + "\n");
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            });
-                            */
-                        new Highcharts.Chart("highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7", options);
+                                });
+                                */
+                            new Highcharts.Chart("highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7", options);
+                        }
                     }
                 }
-            })();
+
+            )();
         </script>
-
-
-
         <script>
             Highcharts.chart('container2', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Voter turnout in Legislative Council election in 2016 by Sex'
-                },
-                xAxis: {
-                    categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65',
-                        '66-70', '>=71'
-                    ]
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Registered Elector'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '<span style="color:{series.color} ">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                    shared: true
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'percent'
-                    }
-                },
-                series: [{
-                    name: 'Female',
-                    data: [34995, 72750, 73411, 75126, 77811, 91477, 107281, 134033, 132631, 105949, 84014, 114431]
-                }, {
-                    name: 'Male',
-                    data: [36884, 72417, 76912, 78837, 77966, 83466, 92576, 119499,
-                        130187, 106657, 88684, 131429
-                    ]
-                }]
-            });
-            Highcharts.chart('container3', {
-                chart: {
-                    type: 'area'
-                },
-                title: {
-                    text: 'Civil servants by Sex'
-                },
-                xAxis: {
-                    allowDecimals: false,
-                    labels: {
-                        formatter: function() {
-                            return this.value; // clean, unformatted
-
-                        }
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Civil Servant'
+                    chart: {
+                        type: 'column'
                     },
-                    labels: {
-                        formatter: function() {
-                            return this.value / 1000 + 'k';
+                    title: {
+                        text: 'Voter turnout in Legislative Council election in 2016 by Sex'
+                    },
+                    xAxis: {
+                        categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66-70', '>=71']
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Registered Elector'
                         }
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{series.name} <b>{point.y:,.0f}'
-                },
-                plotOptions: {
-                    area: {
-                        pointStart: 1986,
-                        marker: {
-                            enabled: false,
-                            symbol: 'circle',
-                            radius: 2,
-                            states: {
-                                hover: {
-                                    enabled: true
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color} ">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: [{
+                        name: 'Female',
+                        data: [34995, 72750, 73411, 75126, 77811, 91477, 107281, 134033, 132631, 105949, 84014, 114431]
+                    }, {
+                        name: 'Male',
+                        data: [36884, 72417, 76912, 78837, 77966, 83466, 92576, 119499, 130187, 106657, 88684, 131429]
+                    }]
+                }
+
+            );
+            Highcharts.chart('container3', {
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'Civil servants by Sex'
+                    },
+                    xAxis: {
+                        allowDecimals: false,
+                        labels: {
+                            formatter: function() {
+                                return this.value; // clean, unformatted
+                            }
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Civil Servant'
+                        },
+                        labels: {
+                            formatter: function() {
+                                return this.value / 1000 + 'k';
+                            }
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name} <b>{point.y:,.0f}'
+                    },
+                    plotOptions: {
+                        area: {
+                            pointStart: 1986,
+                            marker: {
+                                enabled: false,
+                                symbol: 'circle',
+                                radius: 2,
+                                states: {
+                                    hover: {
+                                        enabled: true
+                                    }
                                 }
                             }
                         }
-                    }
-                },
-                series: [
-
-                    {
+                    },
+                    series: [{
                         name: 'Male',
                         data: [126127, 127558, 125069, 116051, 101957, 102488, 104704]
                     }, {
                         name: 'Female',
                         data: [51967, 59448, 59173, 59498, 51867, 56039, 61911]
-                    },
-                ]
-            });
+                    }, ]
+                }
+
+            );
         </script>
-
-
         <script>
             Highcharts.chart('container4', {
-                chart: {
-                    type: 'area'
-                },
-                title: {
-                    text: 'Directorate officers in the civil service by Sex'
-                },
-
-                xAxis: {
-                    categories: ['1986', '1991', '1996', '2001', '2006', '2011', '2016'],
-                    tickmarkPlacement: 'on',
-                    title: {
-                        enabled: false
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Billions'
+                    chart: {
+                        type: 'area'
                     },
-                    labels: {
-                        formatter: function() {
-                            return this.value / 1000;
+                    title: {
+                        text: 'Directorate officers in the civil service by Sex'
+                    },
+                    xAxis: {
+                        categories: ['1986', '1991', '1996', '2001', '2006', '2011', '2016'],
+                        tickmarkPlacement: 'on',
+                        title: {
+                            enabled: false
                         }
-                    }
-                },
-                tooltip: {
-                    split: true,
-                },
-                plotOptions: {
-                    area: {
-                        stacking: 'normal',
-                        lineColor: '#666666',
-                        lineWidth: 1,
-                        marker: {
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Billions'
+                        },
+                        labels: {
+                            formatter: function() {
+                                return this.value / 1000;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
                             lineWidth: 1,
-                            lineColor: '#666666'
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
                         }
-                    }
-                },
-                series: [{
-                    name: 'Male',
-                    data: [901, 1182, 1147, 992, 853, 843, 861]
-                }, {
-                    name: 'Female',
-                    data: [57, 129, 208, 297, 330, 414, 455]
-                }]
-            });
-        </script>
+                    },
+                    series: [{
+                        name: 'Male',
+                        data: [901, 1182, 1147, 992, 853, 843, 861]
+                    }, {
+                        name: 'Female',
+                        data: [57, 129, 208, 297, 330, 414, 455]
+                    }]
+                }
 
+            );
+        </script>
         <script>
             Highcharts.chart('container5', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Recipients of Comprehensive Social Security Assistance (CSSA) by Type of Case and Sex'
-                },
-                xAxis: {
-                    categories: [1996, 2001, 2006, 2011, 2016]
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    min: 0,
+                    chart: {
+                        type: 'column'
+                    },
                     title: {
-                        text: 'Number of fruits'
-                    }
-                },
-                tooltip: {
-                    formatter: function() {
-                        return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>' + 'Total: ' + this.point.stackTotal;
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal'
-                    }
-                },
+                        text: 'Recipients of Comprehensive Social Security Assistance (CSSA) by Type of Case and Sex'
+                    },
+                    xAxis: {
+                        categories: [1996, 2001, 2006, 2011, 2016]
+                    },
+                    yAxis: {
+                        allowDecimals: false,
+                        min: 0,
+                        title: {
+                            text: 'Number of fruits'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>' + 'Total: ' + this.point.stackTotal;
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal'
+                        }
+                    },
+                    series: [{
+                        name: 'Old Age Male',
+                        data: [46405, 81493, 95881, 94310, 83863],
+                        stack: 'male'
+                    }, {
+                        name: 'Old Age Female',
+                        data: [50573, 91151, 106022, 102349, 92973],
+                        stack: 'female'
+                    }, {
+                        name: 'Permanent Disability Male',
+                        data: [8794, 11122, 14657, 13757, 12187],
+                        stack: 'male'
+                    }, {
+                        name: 'Permanent Disability Female',
+                        data: [7068, 8828, 12677, 12188, 11274],
+                        stack: 'female'
+                    }, {
+                        name: 'Ill Health Male',
+                        data: [17612, 21051, 24937, 22239, 18863],
+                        stack: 'male'
+                    }, {
+                        name: 'Ill Health Female',
+                        data: [11116, 17734, 21527, 19723, 18026],
+                        stack: 'female'
+                    }, {
+                        name: 'Single Parent Male',
+                        data: [14847, 28778, 36740, 29664, 23095],
+                        stack: 'male'
+                    }, {
+                        name: 'Single Parent Female',
+                        data: [21758, 44986, 60923, 50320, 41385],
+                        stack: 'female'
+                    }, {
+                        name: 'Low-earnings Male',
+                        data: [6272, 16012, 31516, 20097, 8253],
+                        stack: 'male'
+                    }, {
+                        name: 'Low-earnings Female',
+                        data: [6769, 17264, 33064, 20455, 8604],
+                        stack: 'female'
+                    }, {
+                        name: 'Unemployment Male',
+                        data: [13008, 29523, 40516, 26427, 12555],
+                        stack: 'male'
+                    }, {
+                        name: ' Unemployment Female',
+                        data: [6716, 23666, 34082, 20941, 11208],
+                        stack: 'female'
+                    }]
+                }
 
-                series: [{
-                    name: 'Old Age Male',
-                    data: [46405, 81493, 95881, 94310, 83863],
-                    stack: 'male'
-                }, {
-                    name: 'Old Age Female',
-                    data: [50573, 91151, 106022, 102349, 92973],
-                    stack: 'female'
-                }, {
-                    name: 'Permanent Disability Male',
-                    data: [8794, 11122, 14657, 13757, 12187],
-                    stack: 'male'
-                }, {
-                    name: 'Permanent Disability Female',
-                    data: [7068, 8828, 12677, 12188, 11274],
-                    stack: 'female'
-                }, {
-                    name: 'Ill Health Male',
-                    data: [17612, 21051, 24937, 22239, 18863],
-                    stack: 'male'
-                }, {
-                    name: 'Ill Health Female',
-                    data: [11116, 17734, 21527, 19723, 18026],
-                    stack: 'female'
-                }, {
-                    name: 'Single Parent Male',
-                    data: [14847, 28778, 36740, 29664, 23095],
-                    stack: 'male'
-                }, {
-                    name: 'Single Parent Female',
-                    data: [21758, 44986, 60923, 50320, 41385],
-                    stack: 'female'
-                }, {
-                    name: 'Low-earnings Male',
-                    data: [6272, 16012, 31516, 20097, 8253],
-                    stack: 'male'
-                }, {
-                    name: 'Low-earnings Female',
-                    data: [6769, 17264, 33064, 20455, 8604],
-                    stack: 'female'
-                }, {
-                    name: 'Unemployment Male',
-                    data: [13008, 29523, 40516, 26427, 12555],
-                    stack: 'male'
-                }, {
-                    name: ' Unemployment Female',
-                    data: [6716, 23666, 34082, 20941, 11208],
-                    stack: 'female'
-                }]
-            });
+            );
         </script>
         <script>
             Highcharts.chart('container6', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Persons receiving Social Security Allowance by Sex'
-                },
-                xAxis: {
-                    categories: [1996, 2001, 2006, 2011, 2016]
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    min: 0,
+                    chart: {
+                        type: 'column'
+                    },
                     title: {
-                        text: 'Number of fruits'
-                    }
-                },
-                tooltip: {
-                    formatter: function() {
-                        return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>' + 'Total: ' + this.point.stackTotal;
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal'
-                    }
-                },
+                        text: 'Persons receiving Social Security Allowance by Sex'
+                    },
+                    xAxis: {
+                        categories: [1996, 2001, 2006, 2011, 2016]
+                    },
+                    yAxis: {
+                        allowDecimals: false,
+                        min: 0,
+                        title: {
+                            text: 'Number of fruits'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            return '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y + '<br/>' + 'Total: ' + this.point.stackTotal;
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal'
+                        }
+                    },
+                    series: [{
+                        name: 'Old Age Allowance Male',
+                        data: [188384, 201594, 206804, 235513, 116685],
+                        stack: 'male'
+                    }, {
+                        name: 'Old Age Allowance Female',
+                        data: [247239, 256023, 258021, 282896, 119575],
+                        stack: 'female'
+                    }, {
+                        name: 'Higher Disability Allowance Male',
+                        data: [5974, 7140, 6683, 8089, 9992],
+                        stack: 'male'
+                    }, {
+                        name: 'Higher Disability Allowance Female',
+                        data: [6020, 7946, 7906, 10024, 12025],
+                        stack: 'female'
+                    }, {
+                        name: 'Normal Disability Allowance Male',
+                        data: [30053, 42831, 49247, 58463, 57479],
+                        stack: 'male'
+                    }, {
+                        name: 'Normal Disability Allowance Female',
+                        data: [29167, 43863, 52179, 63653, 61646],
+                        stack: 'female'
+                    }]
+                }
 
-                series: [{
-                    name: 'Old Age Allowance Male',
-                    data: [188384, 201594, 206804, 235513, 116685],
-                    stack: 'male'
-                }, {
-                    name: 'Old Age Allowance Female',
-                    data: [247239, 256023, 258021, 282896, 119575],
-                    stack: 'female'
-                }, {
-                    name: 'Higher Disability Allowance Male',
-                    data: [5974, 7140, 6683, 8089, 9992],
-                    stack: 'male'
-                }, {
-                    name: 'Higher Disability Allowance Female',
-                    data: [6020, 7946, 7906, 10024, 12025],
-                    stack: 'female'
-                }, {
-                    name: 'Normal Disability Allowance Male',
-                    data: [30053, 42831, 49247, 58463, 57479],
-                    stack: 'male'
-                }, {
-                    name: 'Normal Disability Allowance Female',
-                    data: [29167, 43863, 52179, 63653, 61646],
-                    stack: 'female'
-                }]
-            });
+            );
         </script>
-
     </body>
 
 </html>
