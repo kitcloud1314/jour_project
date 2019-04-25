@@ -15,7 +15,8 @@
                 font-size: 25px;
             }
             
-            #container {
+            #container0,
+            #container1 {
                 max-width: 800px;
                 margin: 1em auto;
             }
@@ -35,7 +36,8 @@
         <p>In Hong Kong, women and men have equal right to vote and stand for elections. Whilst there were still far more male than female candidates who stood for election as members of different Government Councils, the number of female candidates had
             registered significant growth over the past 2 decades or so. Except for the age group 71 and over, the turnout rates for both sexes were broadly similar across all age groups in recent years. Males aged 71 and over still had higher turnout
             rates than their female counterparts in various elections.</p>
-        <div id="container" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
+        <div id="container0" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
+        <div id="container1" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <p>The figure of gender differences in voter turnout is not sificant for the nearest election year of Legislative Council election. It fluctuates between 49% to 51%.</p>
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <p>There is a slight drop in the number of civiil servants between 1986 and 2006 from 126 127 to 101 957 while the number increases to 104 704 in 2016. The figure for female civil servant is not siginificant in 1986 to 2006. It has been lied betwen
@@ -53,15 +55,16 @@
             2013.) The number of women receiving SSA increased from 282 426 in 1996 to 446 943 in 2016, while that of their male counterparts increased from 224 411 to 403 878 during the same period.</p>
         <div id="container6" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
+
         <script>
-            Highcharts.chart('container', {
+            Highcharts.chart('container0', {
 
                 chart: {
                     type: 'item'
                 },
 
                 title: {
-                    text: 'Highcharts item chart'
+                    text: 'Candidates, elected members and appointed members in Government Coucils(based on election year) by sex in 2016'
                 },
 
                 subtitle: {
@@ -73,13 +76,54 @@
                 },
 
                 series: [{
-                    name: 'Candidates, elected members and appointed members in Government Coucils(based on election year) by sex in 2016',
+                    name: 'Candidates, elected members and appointed members in the Legislative Council (based on election year) by sex in 2016',
                     keys: ['name', 'y', 'color', 'label'],
                     data: [
-                        ['Female Candidate', 53, '#BE3075', 'Female Candidate'],
-                        ['Male Candidate', 245, '#EB001F', 'Male Candidate'],
-                        ['Female Elected Member', 12, '#64A12D', 'Female Elected Member'],
-                        ['Male Elected Member', 58, '#FFED00', 'Male Elected Member'],
+                        ['Female Candidate', 53, '#EB001F5', 'Female Candidate'],
+                        ['Male Candidate', 245, '#64A12D', 'Male Candidate'],
+                        ['Female Elected Member', 12, '#FFED00', 'Female Elected Member'],
+                        ['Male Elected Member', 58, '#009EE0', 'Male Elected Member'],
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.label}'
+                    },
+
+                    // Circular options
+                    center: ['50%', '88%'],
+                    size: '170%',
+                    startAngle: -100,
+                    endAngle: 100
+                }]
+            });
+        </script>
+        <script>
+            Highcharts.chart('container1', {
+
+                chart: {
+                    type: 'item'
+                },
+
+                title: {
+                    text: 'Candidates, elected members and appointed members in Government Coucils(based on election year) by sex in 2016'
+                },
+
+                subtitle: {
+                    text: 'Parliament visualization'
+                },
+
+                legend: {
+                    labelFormat: '{name} <span style="opacity: 0.4">{y}</span>'
+                },
+
+                series: [{
+                    name: 'Candidates, elected members and appointed members in the Legislative Council (based on election year) by sex in 2016',
+                    keys: ['name', 'y', 'color', 'label'],
+                    data: [
+                        ['Female Candidate', 53, '#EB001F5', 'Female Candidate'],
+                        ['Male Candidate', 245, '#64A12D', 'Male Candidate'],
+                        ['Female Elected Member', 12, '#FFED00', 'Female Elected Member'],
+                        ['Male Elected Member', 58, '#009EE0', 'Male Elected Member'],
                     ],
                     dataLabels: {
                         enabled: true,
