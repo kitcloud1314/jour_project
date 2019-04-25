@@ -14,6 +14,15 @@
             p {
                 font-size: 25px;
             }
+            
+            #container {
+                max-width: 800px;
+                margin: 1em auto;
+            }
+            
+            input[type="number"] {
+                min-width: 50px;
+            }
         </style>
     </head>
 
@@ -25,7 +34,7 @@
         <p>In Hong Kong, women and men have equal right to vote and stand for elections. Whilst there were still far more male than female candidates who stood for election as members of different Government Councils, the number of female candidates had
             registered significant growth over the past 2 decades or so. Except for the age group 71 and over, the turnout rates for both sexes were broadly similar across all age groups in recent years. Males aged 71 and over still had higher turnout
             rates than their female counterparts in various elections.</p>
-        <div id="highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
+        <div id="container" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <p>The figure of gender differences in voter turnout is not sificant for the nearest election year of Legislative Council election. It fluctuates between 49% to 51%.</p>
         <div id="container2" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <p>There is a slight drop in the number of civiil servants between 1986 and 2006 from 126 127 to 101 957 while the number increases to 104 704 in 2016. The figure for female civil servant is not siginificant in 1986 to 2006. It has been lied betwen
@@ -44,176 +53,45 @@
         <div id="container6" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
         <script>
-            (function() {
-                    var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
-                        loaded = 0;
-                    if (typeof window["HighchartsEditor"] === "undefined") {
-                        window.HighchartsEditor = {
-                            ondone: [cl],
-                            hasWrapped: false,
-                            hasLoaded: false
-                        };
-                        include(files[0]);
-                    } else {
-                        if (window.HighchartsEditor.hasLoaded) {
-                            cl();
-                        } else {
-                            window.HighchartsEditor.ondone.push(cl);
-                        }
-                    }
+            Highcharts.chart('container', {
 
-                    function isScriptAlreadyIncluded(src) {
-                        var scripts = document.getElementsByTagName("script");
-                        for (var i = 0; i < scripts.length; i++) {
-                            if (scripts[i].hasAttribute("src")) {
-                                if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    }
+                chart: {
+                    type: 'item'
+                },
 
-                    function check() {
-                        if (loaded === files.length) {
-                            for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
-                                try {
-                                    window.HighchartsEditor.ondone[i]();
-                                } catch (e) {
-                                    console.error(e);
-                                }
-                            }
-                            window.HighchartsEditor.hasLoaded = true;
-                        }
-                    }
+                title: {
+                    text: 'Highcharts item chart'
+                },
 
-                    function include(script) {
-                        function next() {
-                            ++loaded;
-                            if (loaded < files.length) {
-                                include(files[loaded]);
-                            }
-                            check();
-                        }
-                        if (isScriptAlreadyIncluded(script)) {
-                            return next();
-                        }
-                        var sc = document.createElement("script");
-                        sc.src = script;
-                        sc.type = "text/javascript";
-                        sc.onload = function() {
-                            next();
-                        };
-                        document.head.appendChild(sc);
-                    }
+                subtitle: {
+                    text: 'Parliament visualization'
+                },
 
-                    function each(a, fn) {
-                        if (typeof a.forEach !== "undefined") {
-                            a.forEach(fn);
-                        } else {
-                            for (var i = 0; i < a.length; i++) {
-                                if (fn) {
-                                    fn(a[i]);
-                                }
-                            }
-                        }
-                    }
-                    var inc = {},
-                        incl = [];
-                    each(document.querySelectorAll("script"), function(t) {
-                        inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
-                    });
+                legend: {
+                    labelFormat: '{name} <span style="opacity: 0.4">{y}</span>'
+                },
 
-                    function cl() {
-                        if (typeof window["Highcharts"] !== "undefined") {
-                            var options = {
-                                "title": {
-                                    "text": "Candidates, elected members and appointed members in Government Councils(Based on Election Year) by Sex"
-                                },
-                                "yAxis": [{
-                                    "title": {
-                                        "text": "Number"
-                                    }
-                                }],
-                                "legend": {
-                                    "layout": "vertical",
-                                    "align": "right",
-                                    "verticalAlign": "middle"
-                                },
-                                "plotOptions": {
-                                    "series": {
-                                        "label": {
-                                            "connectorAllowed": false
-                                        },
-                                        "pointStart": 2010,
-                                        "animation": false
-                                    }
-                                },
-                                "series": [{
-                                    "turboThreshold": 0,
-                                    "_colorIndex": 0,
-                                    "_symbolIndex": 0
-                                }, {
-                                    "turboThreshold": 0,
-                                    "_colorIndex": 1,
-                                    "_symbolIndex": 0
-                                }, {
-                                    "turboThreshold": 0,
-                                    "_colorIndex": 2,
-                                    "_symbolIndex": 0
-                                }, {
-                                    "turboThreshold": 0,
-                                    "_colorIndex": 3,
-                                    "_symbolIndex": 0
-                                }],
-                                "responsive": {
-                                    "rules": [{
-                                        "condition": {
-                                            "maxWidth": 500
-                                        },
-                                        "chartOptions": {
-                                            "legend": {
-                                                "layout": "horizontal",
-                                                "align": "center",
-                                                "verticalAlign": "bottom"
-                                            }
-                                        },
-                                        "_id": "highcharts-yl9h627-24"
-                                    }]
-                                },
-                                "data": {
-                                    "csv": "\"Category\";\"Male Candiate\";\"Female Candidate\";\"Male Elected Member\";\"Female Elected Member\"\n2000;127;28;50;10\n2004;113;26;49;11\n2008;163;38;49;11\n2012;231;56;59;11\n2016;245;53;58;12",
-                                    "googleSpreadsheetKey": false,
-                                    "googleSpreadsheetWorksheet": false
-                                }
-                            };
-                            /*
-                                // Sample of extending options:
-                                Highcharts.merge(true, options, {
-                                    chart: {
-                                        backgroundColor: "#bada55"
-                                    },
-                                    plotOptions: {
-                                        series: {
-                                            cursor: "pointer",
-                                            events: {
-                                                click: function(event) {
-                                                    alert(this.name + " clicked\n" +
-                                                          "Alt: " + event.altKey + "\n" +
-                                                          "Control: " + event.ctrlKey + "\n" +
-                                                          "Shift: " + event.shiftKey + "\n");
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                                */
-                            new Highcharts.Chart("highcharts-2c61aeff-d7b7-499e-a35b-7c3fbc32fde7", options);
-                        }
-                    }
-                }
+                series: [{
+                    name: 'Candidates, elected members and appointed members in Government Coucils(based on election year) by sex in 2016',
+                    keys: ['name', 'y', 'color', 'label'],
+                    data: [
+                        ['Female Candidate', 53, '#BE3075', 'Female Candidate'],
+                        ['Male Candidate', 245, '#EB001F', 'Male Candidate'],
+                        ['Female Elected Member', 12, '#64A12D', 'Female Elected Member'],
+                        ['Male Elected Member', 58, '#FFED00', 'Male Elected Member'],
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.label}'
+                    },
 
-            )();
+                    // Circular options
+                    center: ['50%', '88%'],
+                    size: '170%',
+                    startAngle: -100,
+                    endAngle: 100
+                }]
+            });
         </script>
         <script>
             Highcharts.chart('container2', {
@@ -221,7 +99,7 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Voter turnout in Legislative Council election in 2016 by Sex'
+                        text: 'Voter turnout in Legislative Council election in 2016 by sex'
                     },
                     xAxis: {
                         categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66-70', '>=71']
@@ -341,7 +219,7 @@
                                 "type": "area"
                             },
                             "title": {
-                                "text": "Civil servants by Sex"
+                                "text": "Civil servants by sex"
                             },
                             "xAxis": [{
                                 "allowDecimals": false,
@@ -423,7 +301,7 @@
                         type: 'area'
                     },
                     title: {
-                        text: 'Directorate officers in the civil service by Sex'
+                        text: 'Directorate officers in the civil service by sex'
                     },
                     xAxis: {
                         categories: ['1986', '1991', '1996', '2001', '2006', '2011', '2016'],
@@ -476,7 +354,7 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Recipients of Comprehensive Social Security Assistance (CSSA) by Type of Case and Sex'
+                        text: 'Recipients of Comprehensive Social Security Assistance (CSSA) by Type of Case and sex'
                     },
                     xAxis: {
                         categories: [1996, 2001, 2006, 2011, 2016]
