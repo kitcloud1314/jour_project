@@ -38,22 +38,12 @@
             rates than their female counterparts in various elections.</p>
         <div id="container0" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container1" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
-        <p>The figure of gender differences in voter turnout is not sificant for the nearest election year of Legislative Council election. It fluctuates between 49% to 51%.</p>
         <div id="container21" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
         <div id="container22" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
-        <p>There is a slight drop in the number of civiil servants between 1986 and 2006 from 126 127 to 101 957 while the number increases to 104 704 in 2016. The figure for female civil servant is not siginificant in 1986 to 2006. It has been lied betwen
-            51867 and 59 498. The number slowly increase to 61 911 in 2016.
-        </p>
         <div id="container3" style="min-width: 310px; height: 400px;  max-width: 800px; margin: 0 auto"></div>
-        <p>In the civil service, the number of female directorate officers increased significantly from 57 in 1986 to 455 in 2016. The proportion of female civil servants also rose progressively from 29.2% to 37.6% over the same period.</p>
         <div id="container4" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
         <h2>Social Welfare</h2>
-        <p>During the period 1996 to 2006, the number of CSSA recipients increased from 223 384 to 521 611 and then decreased gradually to 348 431 in 2016. The number of female CSSA recipients was in general more than that of male recipients. The number
-            of female CSSA recipients increased from 110 244 in 1996 to 272 999 in 2006 and then dropped to 186 661 in 2016, while their male counterparts increased from 113 140 to 248 612 and then decreased to 161 770 during the same period.</p>
         <div id="container5" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
-        <p>The number of persons receiving SSA increased from 506 837 in 1996 to 835 262 in 2016. The number of women receiving SSA was in general greater than that of men, mainly due to the greater number of elderly women in receipt of Old Age Living Allowance
-            (OALA), Old Age Allowance (OAA) and Disability Allowance (DA) payment. (OALA was launched in April 2013. Eligible OAA recipients and Normal DA recipients aged 65 and over were gradually converted to receive OALA payment with effect from April
-            2013.) The number of women receiving SSA increased from 282 426 in 1996 to 446 943 in 2016, while that of their male counterparts increased from 224 411 to 403 878 during the same period.</p>
         <div id="container6" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto "></div>
         <script src=" https://code.highcharts.com/modules/series-label.js "></script>
 
@@ -458,6 +448,70 @@
 
             );
         </script>
+        <script>Highcharts.chart('container', {
+                title: {
+                    text: 'Combination chart'
+                },
+                xAxis: {
+                    categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+                },
+                labels: {
+                    items: [{
+                        html: 'Total fruit consumption',
+                        style: {
+                            left: '50px',
+                            top: '18px',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                        }
+                    }]
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Jane',
+                    data: [3, 2, 1, 3, 4]
+                }, {
+                    type: 'column',
+                    name: 'John',
+                    data: [2, 3, 5, 7, 6]
+                }, {
+                    type: 'column',
+                    name: 'Joe',
+                    data: [4, 3, 3, 9, 0]
+                }, {
+                    type: 'spline',
+                    name: 'Average',
+                    data: [3, 2.67, 3, 6.33, 3.33],
+                    marker: {
+                        lineWidth: 2,
+                        lineColor: Highcharts.getOptions().colors[3],
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'pie',
+                    name: 'Electronic Device',
+                    data: [{
+                        name: 'Personal Computer',
+                        y: 2764.3,
+                        color: Highcharts.getOptions().colors[0] // Jane's color
+                    }, {
+                        name: 'Mobile Phone',
+                        y: 23,
+                        color: Highcharts.getOptions().colors[1] // John's color
+                    }, {
+                        name: 'Smartphone',
+                        y: 19,
+                        color: Highcharts.getOptions().colors[2] // Joe's color
+                    }],
+                    center: [100, 80],
+                    size: 100,
+                    showInLegend: false,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            });
+            </script>
+
     </body>
 
 </html>
