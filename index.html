@@ -111,10 +111,10 @@
                     name: 'Candidates, elected members and appointed members in the Legislative Council (based on election year) by sex in 2016',
                     keys: ['name', 'y', 'color', 'label'],
                     data: [
-                        ['Female Candidate', 53, '#009EE0', 'Female Candidate'],
-                        ['Male Candidate', 245, '#FFED00', 'Male Candidate'],
-                        ['Female Elected Member', 12, '#64A12D', 'Female Elected Member'],
-                        ['Male Elected Member', 58, '#EB001F5', 'Male Elected Member'],
+                        ['Female Candidate', 53, '#EB001F', 'Female Candidate'],
+                        ['Male Candidate', 245, '#64A12D', 'Male Candidate'],
+                        ['Female Elected Member', 12, '#FFED00', 'Female Elected Member'],
+                        ['Male Elected Member', 58, '', 'Male Elected Member'],
                     ],
                     dataLabels: {
                         enabled: true,
@@ -391,7 +391,7 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Persons receiving Social Security Allowance (SSA) by Sex from 2015 to 2017'
+                        text: 'Persons receiving Social Security Allowance by Sex from 2015 to 2017'
                     },
                     xAxis: {
                         categories: [2015, 2016, 2017]
@@ -449,70 +449,6 @@
                 }
 
             );
-        </script>
-        <script>
-            Highcharts.chart('container', {
-                title: {
-                    text: 'Combination chart'
-                },
-                xAxis: {
-                    categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
-                },
-                labels: {
-                    items: [{
-                        html: 'Total fruit consumption',
-                        style: {
-                            left: '50px',
-                            top: '18px',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                        }
-                    }]
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Jane',
-                    data: [3, 2, 1, 3, 4]
-                }, {
-                    type: 'column',
-                    name: 'John',
-                    data: [2, 3, 5, 7, 6]
-                }, {
-                    type: 'column',
-                    name: 'Joe',
-                    data: [4, 3, 3, 9, 0]
-                }, {
-                    type: 'spline',
-                    name: 'Average',
-                    data: [3, 2.67, 3, 6.33, 3.33],
-                    marker: {
-                        lineWidth: 2,
-                        lineColor: Highcharts.getOptions().colors[3],
-                        fillColor: 'white'
-                    }
-                }, {
-                    type: 'pie',
-                    name: 'Electronic Device',
-                    data: [{
-                        name: 'Personal Computer',
-                        y: 2764.3,
-                        color: Highcharts.getOptions().colors[0] // Jane's color
-                    }, {
-                        name: 'Mobile Phone',
-                        y: 23,
-                        color: Highcharts.getOptions().colors[1] // John's color
-                    }, {
-                        name: 'Smartphone',
-                        y: 19,
-                        color: Highcharts.getOptions().colors[2] // Joe's color
-                    }],
-                    center: [100, 80],
-                    size: 100,
-                    showInLegend: false,
-                    dataLabels: {
-                        enabled: false
-                    }
-                }]
-            });
         </script>
 
     </body>
