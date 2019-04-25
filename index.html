@@ -139,6 +139,43 @@
         </script>
 
         <script>
+            Highcharts.chart('container21', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Voter turnout in District Council election in 2015 by sex'
+                    },
+                    xAxis: {
+                        categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66-70', '>=71']
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Registered Elector'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color} ">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: [{
+                        name: 'Female',
+                        data: [17244, 36142, 35948, 38976, 46708, 59899, 73882, 95641, 95162, 78264, 60116, 100518]
+                    }, {
+                        name: 'Male',
+                        data: [18163, 39243, 40403, 43302, 47270, 53582, 63912, 85681, 90292, 76877, 61506, 108498]
+                    }]
+                }
+
+            );
+        </script>
+        <script>
             Highcharts.chart('container22', {
                     chart: {
                         type: 'column'
@@ -178,169 +215,53 @@
 
 
         <script>
-            (function() {
-                var files = ["https://code.highcharts.com/stock/highstock.js", "https://code.highcharts.com/highcharts-more.js", "https://code.highcharts.com/highcharts-3d.js", "https://code.highcharts.com/modules/data.js", "https://code.highcharts.com/modules/exporting.js", "https://code.highcharts.com/modules/funnel.js", "https://code.highcharts.com/6.0.2/modules/annotations.js", "https://code.highcharts.com/modules/solid-gauge.js"],
-                    loaded = 0;
-                if (typeof window["HighchartsEditor"] === "undefined") {
-                    window.HighchartsEditor = {
-                        ondone: [cl],
-                        hasWrapped: false,
-                        hasLoaded: false
-                    };
-                    include(files[0]);
-                } else {
-                    if (window.HighchartsEditor.hasLoaded) {
-                        cl();
-                    } else {
-                        window.HighchartsEditor.ondone.push(cl);
-                    }
-                }
+            Highcharts.chart('container3', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Civil Servant by sex from 2015 to 2017'
+                },
 
-                function isScriptAlreadyIncluded(src) {
-                    var scripts = document.getElementsByTagName("script");
-                    for (var i = 0; i < scripts.length; i++) {
-                        if (scripts[i].hasAttribute("src")) {
-                            if ((scripts[i].getAttribute("src") || "").indexOf(src) >= 0 || (scripts[i].getAttribute("src") === "http://code.highcharts.com/highcharts.js" && src === "https://code.highcharts.com/stock/highstock.js")) {
-                                return true;
-                            }
-                        }
+                xAxis: {
+                    categories: [
+                        '2015',
+                        '2016',
+                        '2017'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Number'
                     }
-                    return false;
-                }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Female',
+                    data: [61046, 61911, 24112]
 
-                function check() {
-                    if (loaded === files.length) {
-                        for (var i = 0; i < window.HighchartsEditor.ondone.length; i++) {
-                            try {
-                                window.HighchartsEditor.ondone[i]();
-                            } catch (e) {
-                                console.error(e);
-                            }
-                        }
-                        window.HighchartsEditor.hasLoaded = true;
-                    }
-                }
+                }, {
+                    name: 'Male',
+                    data: [103847, 104704, 106231]
 
-                function include(script) {
-                    function next() {
-                        ++loaded;
-                        if (loaded < files.length) {
-                            include(files[loaded]);
-                        }
-                        check();
-                    }
-                    if (isScriptAlreadyIncluded(script)) {
-                        return next();
-                    }
-                    var sc = document.createElement("script");
-                    sc.src = script;
-                    sc.type = "text/javascript";
-                    sc.onload = function() {
-                        next();
-                    };
-                    document.head.appendChild(sc);
-                }
-
-                function each(a, fn) {
-                    if (typeof a.forEach !== "undefined") {
-                        a.forEach(fn);
-                    } else {
-                        for (var i = 0; i < a.length; i++) {
-                            if (fn) {
-                                fn(a[i]);
-                            }
-                        }
-                    }
-                }
-                var inc = {},
-                    incl = [];
-                each(document.querySelectorAll("script"), function(t) {
-                    inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
-                });
-
-                function cl() {
-                    if (typeof window["Highcharts"] !== "undefined") {
-                        var options = {
-                            "chart": {
-                                "type": "area"
-                            },
-                            "title": {
-                                "text": "Civil servants by sex"
-                            },
-                            "xAxis": [{
-                                "allowDecimals": false,
-                                "labels": {}
-                            }],
-                            "yAxis": [{
-                                "title": {
-                                    "text": "Civil Servant"
-                                },
-                                "labels": {}
-                            }],
-                            "tooltip": {
-                                "pointFormat": "{series.name} <b>{point.y:,.0f}"
-                            },
-                            "plotOptions": {
-                                "area": {
-                                    "pointStart": 1986,
-                                    "marker": {
-                                        "enabled": false,
-                                        "symbol": "circle",
-                                        "radius": 2,
-                                        "states": {
-                                            "hover": {
-                                                "enabled": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "series": {
-                                    "animation": false
-                                }
-                            },
-                            "series": [{
-                                "turboThreshold": 0,
-                                "_colorIndex": 0,
-                                "_symbolIndex": 0
-                            }, {
-                                "turboThreshold": 0,
-                                "_colorIndex": 1,
-                                "_symbolIndex": 0,
-                                "type": "area"
-                            }],
-                            "data": {
-                                "csv": "\"Category\";\"Male\";\"Female\"\n1986;126127;51967\n1991;127558;59448\n1996;125069;59173\n2001;116051;59498\n2006;101957;51867\n2011;102488;56039\n2016;104704;61911",
-                                "googleSpreadsheetKey": false,
-                                "googleSpreadsheetWorksheet": false
-                            }
-                        };
-                        /*
-                                // Sample of extending options:
-                                Highcharts.merge(true, options, {
-                                    chart: {
-                                        backgroundColor: "#bada55"
-                                    },
-                                    plotOptions: {
-                                        series: {
-                                            cursor: "pointer",
-                                            events: {
-                                                click: function(event) {
-                                                    alert(this.name + " clicked\n" +
-                                                          "Alt: " + event.altKey + "\n" +
-                                                          "Control: " + event.ctrlKey + "\n" +
-                                                          "Shift: " + event.shiftKey + "\n");
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                                */
-                        new Highcharts.Chart("highcharts-bf01ec8e-4fde-4a43-b0b2-fd01f218a873", options);
-                    }
-                }
-            })();
+                }]
+            });
         </script>
-
         <script>
             Highcharts.chart('container4', {
                     chart: {
@@ -543,40 +464,3 @@
     </body>
 
 </html>
-<script>
-    Highcharts.chart('container21', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Voter turnout in District Council election in 2015 by sex'
-            },
-            xAxis: {
-                categories: ['18-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66-70', '>=71']
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Registered Elector'
-                }
-            },
-            tooltip: {
-                pointFormat: '<span style="color:{series.color} ">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                shared: true
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'percent'
-                }
-            },
-            series: [{
-                name: 'Female',
-                data: [17244, 36142, 35948, 38976, 46708, 59899, 73882, 95641, 95162, 78264, 60116, 100518]
-            }, {
-                name: 'Male',
-                data: [18163, 39243, 40403, 43302, 47270, 53582, 63912, 85681, 90292, 76877, 61506, 108498]
-            }]
-        }
-
-    );
-</script>
