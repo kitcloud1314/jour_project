@@ -30,7 +30,12 @@ body, html {
   height: 100%;
 }
 
+.Heading {
+  font-size: 500%; 
+}
+
 #About {background-color: red;}
 #News {background-color: green;}
 #Photos {background-color: blue;}
 #Weekly_Journal {background-color: orange;}
+
